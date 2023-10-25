@@ -1,11 +1,16 @@
 #!/bin/bash
-BUDDY_OPT := ../../../build/bin/buddy-opt
-MLIR_OPT := ../../../llvm/build/bin/mlir-opt
-MLIR_TRANSLATE := ../../../llvm/build/bin/mlir-translate
-MLIR_CPU_RUNNER := ../../../llvm/build/bin/mlir-cpu-runner
-LLC := ../../../llvm/build/bin/llc
-LLVM_AS := ../../../llvm/build/bin/llvm-as
+BUDDY_OPT := ../../build/bin/buddy-opt
+MLIR_OPT := ../../llvm/build/bin/mlir-opt
+MLIR_TRANSLATE := ../../llvm/build/bin/mlir-translate
+MLIR_CPU_RUNNER := ../../llvm/build/bin/mlir-cpu-runner
+LLC := ../../llvm/build/bin/llc
+LLVM_AS := ../../llvm/build/bin/llvm-as
 OPT_FLAG := -O0
+
+llama-print:
+	@${MLIR_OPT} ./llama.mlir \
+		--print-op-stats | \
+		-o llama-print.out
 
 llama-lower:
 	@${MLIR_OPT} ./llama.mlir \
